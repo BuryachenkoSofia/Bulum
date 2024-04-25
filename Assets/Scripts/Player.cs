@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
   public Text HPText;
   private bool isGrounded;
 
+
   private void Awake()
   {
     Time.timeScale = 1f;
@@ -18,12 +19,15 @@ public class Player : MonoBehaviour
     Time.timeScale = 1f;
     HPText.text = "HP: " + HP;
   }
-
-  private void FixedUpdate()
+  private void Update() {
+    Vector3 acceleration = Input.acceleration;
+    _rb.velocity = new Vector3(acceleration.x * 12, 0, 0);
+  }
+  /*private void FixedUpdate()
   {
     float h = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime; // передвижение 
     _rb.velocity = transform.TransformDirection(new Vector2(h, _rb.velocity.y)); // скорость rigidbody
-  }
+  }*/
 
   private void OnCollisionEnter2D(Collision2D other)
   {

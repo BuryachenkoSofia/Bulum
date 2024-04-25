@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
+  public bool isPlay = true;
+
   // выход из игры 
   public void Exit()
   {
@@ -27,5 +29,17 @@ public class Menu : MonoBehaviour
   public void Reset()
   {
     PlayerPrefs.SetFloat("record", 0);
+  }
+
+  public void Pause()
+  {
+    if(isPlay)
+    {
+      Time.timeScale = 0f;
+    }
+    else{
+      Time.timeScale = 1f;
+    }
+    isPlay = !isPlay;
   }
 }
